@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Access Denied</title>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    </head>
+    <body>
+        <th:block th:include="/_menu"></th:block>
+        <h3 th:if="${message != null}" th:utext="${message}" style="color: red;"></h3>
+        <div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
+    </body>
+</html>

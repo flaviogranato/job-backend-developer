@@ -1,0 +1,89 @@
+version: '3'
+services:
+#  pulsar-grafana:
+#    image: grafana/grafana
+#    environment:
+#      GF_SECURITY_ADMIN_PASSWORD: secret
+#    restart: always
+#    ports:
+#      - 3000:3000
+#    networks:
+#      - net
+#
+#  pulsar-prometheus-pushgateway:
+#    image: prom/pushgateway
+#    ports:
+#      - 9091:9091
+#    networks:
+#      - net
+
+#  pulsar-prometheus:
+#    image: pulsar/prometheus:0.1
+#    ports:
+#      - 9090:9090
+#    networks:
+#      - net
+
+#  pulsar-server:
+#    image: apachepulsar/pulsar:2.0.0-rc1-incubating
+#    command: bin/pulsar standalone --advertised-address pulsar-server
+#    ports:
+#      - 6650
+#      - 8080
+#    networks:
+#      - net
+
+#  pulsar-dashboard:
+#    image: apachepulsar/pulsar-dashboard
+#    restart: always
+#    environment:
+#      SERVICE_URL: http://pulsar-server:8080/
+#    ports:
+#      - 80:80
+#    networks:
+#      - net
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: item
+    volumes:
+      - ./migrations/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5432:5432
+    networks:
+      - net
+
+  cache:
+    image: redis:alpine
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - net
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    networks:
+      - net
+
+#  consumer:
+#    image: pulsar/consumer:0.4
+#    links:
+#      - pulsar-server
+#    depends_on:
+#      - pulsar-server
+#    restart: always
+#    expose:
+#      - 6650
+#    networks:
+#      - net
+
+networks:
+  net:
+    driver: bridge
