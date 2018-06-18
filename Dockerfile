@@ -18,7 +18,7 @@ RUN apk update && \
     mv flyway-4.2.0 bin/flyway && \
     chmod a+x bin/flyway
 
-ADD build/libs/login-0.0.1-SNAPSHOT.jar login.jar
+ADD login-0.0.1-SNAPSHOT.jar login.jar
 ADD migrations migrations
 
 EXPOSE 4567
