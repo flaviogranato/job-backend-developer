@@ -5,7 +5,14 @@
         <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
     </head>
     <body>
-        <th:block th:include="/_menu"></th:block>
+    <div class="pure-menu pure-menu-horizontal">
+        <a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Logout</a>
+        <a th:href="@{/}" class="pure-menu-heading pure-menu-link">Home</a>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"><a th:href="@{/userInfo}" class="pure-menu-link">User</a></li>
+            <li class="pure-menu-item"><a th:href="@{/admin}" class="pure-menu-link">Admin</a></li>
+        </ul>
+    </div>
         <h3 th:if="${message != null}" th:utext="${message}" style="color: red;"></h3>
         <div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
     </body>

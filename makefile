@@ -1,6 +1,6 @@
 VER=$(shell git log -1 --pretty=format:"%H")
 
-GIT_VERSION := $(shell git describe --abbrev=0 --dirty --always --tags)
+GIT_VERSION := $(shell git describe --abbrev=6 --dirty --always --tags)
 
 CONTAINER_NAME = login:$(GIT_VERSION)
 

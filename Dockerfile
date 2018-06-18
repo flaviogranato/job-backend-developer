@@ -18,10 +18,10 @@ RUN apk update && \
     mv flyway-4.2.0 bin/flyway && \
     chmod a+x bin/flyway
 
-ADD build/libs/login-0.0.1-SNAPSHOT.jar login.jar
+ADD login-1.0.0.jar login.jar
 ADD migrations migrations
 
-EXPOSE 4567
+EXPOSE 5432
 EXPOSE 8080
 
-CMD ["java", "-Xmx100m","-jar","login.jar"]
+CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx100m","-jar","login.jar"]
