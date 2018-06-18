@@ -52,7 +52,7 @@ services:
     volumes:
       - ./migrations/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - 5432:5432
+      - 5432
     networks:
       - net
 
@@ -60,17 +60,17 @@ services:
     image: redis:alpine
     restart: always
     ports:
-      - 6379:6379
+      - 6379
     networks:
       - net
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8081:8080
-    networks:
-      - net
+#  adminer:
+#    image: adminer
+#    restart: always
+#    ports:
+#      - 8081:8080
+#    networks:
+#      - net
 
 #  consumer:
 #    image: pulsar/consumer:0.4
