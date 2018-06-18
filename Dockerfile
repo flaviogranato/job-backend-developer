@@ -21,7 +21,7 @@ RUN apk update && \
 ADD login-0.0.1-SNAPSHOT.jar login.jar
 ADD migrations migrations
 
-EXPOSE 4567
+EXPOSE 5432
 EXPOSE 8080
 
 CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx100m","-jar","login.jar"]
