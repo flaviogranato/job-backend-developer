@@ -24,4 +24,4 @@ ADD migrations migrations
 EXPOSE 4567
 EXPOSE 8080
 
-CMD ["java", "-Xmx100m","-jar","login.jar"]
+CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx100m","-jar","login.jar"]
