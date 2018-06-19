@@ -1,6 +1,7 @@
 package br.com.flaviogranato.login.config;
 
 import br.com.flaviogranato.login.domain.UserDetailsServiceImpl;
+import br.com.flaviogranato.login.entity.Token;
 import br.com.flaviogranato.login.entity.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,11 @@ public class LoginConfiguration extends WebSecurityConfigurerAdapter {
 
 
   @Bean
+  public Jackson2JsonRedisSerializer<Token> jacksonJsonRedisJsonSerializerToken() {
+    return new Jackson2JsonRedisSerializer<>(Token.class);
+  }
+
+
   @Bean
   public Jackson2JsonRedisSerializer<User> jacksonJsonRedisJsonSerializerUser() {
     return new Jackson2JsonRedisSerializer<>(User.class);
@@ -59,10 +65,34 @@ public class LoginConfiguration extends WebSecurityConfigurerAdapter {
   public Jackson2JsonRedisSerializer<List> jacksonJsonRedisJsonSerializerRole() {
     return new Jackson2JsonRedisSerializer<>(List.class);
   }
+
+
+  @Bean(name = "token")
+  @Primary
+  public RedisTemplate<String,Token> redisTemplateToken() {
+    RedisTemplate<String,Token> redisTemplate = new RedisTemplate<>();
+    redisTemplate.setConnectionFactory(redisConnectionFactory());
+    redisTemplate.setKeySerializer(stringRedisSerializer());
+    redisTemplate.setValueSerializer(jacksonJsonRedisJsonSerializerToken());
+    return redisTemplate;
+  }
+
+
   @Bean(name = "user")
   @Primary
   public RedisTemplate<String,User> redisTemplateUser() {
     RedisTemplate<String,User> redisTemplate = new RedisTemplate<>();
+    redisTemplate.setConnectionFactory(redisConnectionFactory());
+    redisTemplate.setKeySerializer(stringRedisSerializer());
+    redisTemplate.setValueSerializer(jacksonJsonRedisJsonSerializerUser());
+    return redisTemplate;
+  }
+
+
+  @Bean(name = "users")
+  @Primary
+  public RedisTemplate<String,List<User>> redisTemplateUsers() {
+    RedisTemplate<String,List<User>> redisTemplate = new RedisTemplate<>();
     redisTemplate.setConnectionFactory(redisConnectionFactory());
     redisTemplate.setKeySerializer(stringRedisSerializer());
     redisTemplate.setValueSerializer(jacksonJsonRedisJsonSerializerUser());

@@ -1,3 +1,16 @@
+CREATE TABLE tokens (
+  application VARCHAR(50) NOT NULL ,
+  api_token VARCHAR(256) NOT NULL,
+  enabled INT NOT NULL
+);
+
+ALTER TABLE tokens
+  ADD CONSTRAINT token_pk PRIMARY KEY (application, api_token);
+
+ALTER TABLE tokens
+  ADD CONSTRAINT token_uk UNIQUE (api_token);
+
+
 CREATE TABLE users (
   id BIGINT NOT NULL,
   username VARCHAR(50) NOT NULL ,
@@ -41,6 +54,9 @@ ALTER TABLE user_role
  
 ALTER TABLE user_role
   ADD CONSTRAINT user_role_fk2 FOREIGN KEY (role_id) REFERENCES roles (id);
+
+INSERT INTO tokens (application, api_token, enabled)
+VALUES ('erp', 'bf9063f1-48ef-443c-b814-d8ab1b512290', 1);
 
 INSERT INTO users (id, username, password, enabled)
 VALUES (2, 'user1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 1);
