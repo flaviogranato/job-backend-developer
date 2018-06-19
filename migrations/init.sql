@@ -43,10 +43,10 @@ ALTER TABLE user_role
   ADD CONSTRAINT user_role_fk2 FOREIGN KEY (role_id) REFERENCES roles (id);
 
 INSERT INTO users (id, username, password, enabled)
-VALUES (2, 'dbuser1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 1);
+VALUES (2, 'user1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 1);
  
 INSERT INTO users (id, username, password, enabled)
-VALUES (1, 'dbadmin1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 1);
+VALUES (1, 'admin1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 1);
  
 INSERT INTO roles (id, rolename)
 VALUES (1, 'ROLE_ADMIN');
