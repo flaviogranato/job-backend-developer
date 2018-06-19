@@ -49,27 +49,34 @@ public class LoginConfiguration extends WebSecurityConfigurerAdapter {
 
 
   @Bean
-  public Jackson2JsonRedisSerializer<User> jacksonJsonRedisJsonSerializer() {
+  @Bean
+  public Jackson2JsonRedisSerializer<User> jacksonJsonRedisJsonSerializerUser() {
     return new Jackson2JsonRedisSerializer<>(User.class);
   }
 
 
+  @Bean
+  public Jackson2JsonRedisSerializer<List> jacksonJsonRedisJsonSerializerRole() {
+    return new Jackson2JsonRedisSerializer<>(List.class);
+  }
   @Bean(name = "user")
   @Primary
   public RedisTemplate<String,User> redisTemplateUser() {
     RedisTemplate<String,User> redisTemplate = new RedisTemplate<>();
     redisTemplate.setConnectionFactory(redisConnectionFactory());
     redisTemplate.setKeySerializer(stringRedisSerializer());
-    redisTemplate.setValueSerializer(jacksonJsonRedisJsonSerializer());
+    redisTemplate.setValueSerializer(jacksonJsonRedisJsonSerializerUser());
     return redisTemplate;
   }
 
 
   @Bean(name = "role")
   public RedisTemplate<String,List<String>> redisTemplateRole() {
-    RedisTemplate template = new RedisTemplate();
-    template.setConnectionFactory(redisConnectionFactory());
-    return template;
+    RedisTemplate<String,List<String>> redisTemplate = new RedisTemplate<>();
+    redisTemplate.setConnectionFactory(redisConnectionFactory());
+    redisTemplate.setKeySerializer(stringRedisSerializer());
+    redisTemplate.setValueSerializer(jacksonJsonRedisJsonSerializerRole());
+    return redisTemplate;
   }
 
 
