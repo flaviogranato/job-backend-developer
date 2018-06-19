@@ -18,9 +18,8 @@ bem como já ter uma grande base de usuários.
 
 2) Com base no problema anterior, gostaríamos que você codificasse um novo sistema de login para muitos usuários simultâneos e carregamento da tela inicial. Lembre-se que é um sistema web então teremos conteúdo estático e dinâmico. Leve em consideração também que na empresa existe um outro sistema que também requisitará os dados dos usuários, portanto, este sistema deve expor as informações para este outro sistema de alguma maneira.
 
-
 Utilizei docker e docker-compose para montar a infraestrutura do projeto e também criei um makefile para poder
-ajudar na criação da imagem docker.
+ajudar na criação da imagem docker. Também utilizei o git-flow para ajudar no desenvolvimento da aplicação.
 
 Portanto deve-se seguir os passos abaixo para poder executar o projeto:
 
