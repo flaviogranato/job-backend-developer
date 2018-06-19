@@ -1,4 +1,4 @@
-FROM openjdk:alpine
+FROM openjdk:8-alpine
 
 ENV LOCALE "pt_BR.UTF-8"
 ENV LOCALTIME "America/Sao_Paulo"
